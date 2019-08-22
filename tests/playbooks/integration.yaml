@@ -1,0 +1,9 @@
+- host: all
+  tasks:
+    - name: Run integration test
+      include_role:
+        name: tox
+      vars:
+        tox_extra_args: "-vv -- ansible-playbook -v zuul.yaml"
+        tox_install_siblings: false
+        zuul_work_dir: "{{ zuul.projects['github.com/ansible-network/network_network_content_collector'].src_dir }}"
