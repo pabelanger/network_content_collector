@@ -1,5 +1,11 @@
 - hosts: all
   tasks:
+    - name: git config user.name
+      command: git config --global user.name 'CaptTrews'
+
+    - name: git config user.email
+      command: git config --global user.email 'capttrews@gmail.com'
+
     - name: Run integration test
       include_role:
         name: tox
