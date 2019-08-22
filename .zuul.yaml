@@ -1,0 +1,5 @@
+---
+- job:
+    name: ncc-tox-integration
+    parent: unittests
+    run: tests/playbooks/integration.yaml
