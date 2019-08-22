@@ -1,0 +1,4 @@
+---
+- job:
+    name: ncc-tox-integration
+    run: tests/playbooks/integration.yaml
