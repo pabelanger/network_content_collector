@@ -1,0 +1,13 @@
+- job:
+    name: ncc-tox-integration
+    parent: unittests
+    run: tests/playbooks/integration.yaml
+    required-projects:
+      - name: ansible-network/ansible_collections.vyos.vyos
+      - name: ansible-network/network_content_collector
+    nodeset: fedora-latest-1vcpu
+
+- project:
+    check:
+      jobs:
+        - ncc-tox-integration
