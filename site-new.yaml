@@ -1,0 +1,33 @@
+# always use full paths for the ansible source and dest dirs
+- hosts: localhost
+  vars:
+    ansible_source_directory: "{{ ansible_user_dir }}/src/github.com/ansible/ansible"
+    destination_directory: "{{ ansible_user_dir }}/src/github.com/ansible-network"
+  tasks:
+    # NOTE(pabelanger): we override the SHA here for branch name
+  - name: Get the SHA to branch name
+    set_fact:
+      ansible_sha: "ansible/collections-sync"
+
+  - name: Run for each platform
+    include: one_platform1.yaml
+    loop:
+    - namespace: arista
+      name: eos
+    - namespace: cisco
+      name: ios
+    - namespace: cisco
+      name: iosxr
+#    - namespace: cisco
+#      name: nxos
+    - namespace: juniper
+      name: junos
+    - namespace: vyos
+      name: vyos
+    - namespace: network
+      name: cli
+#    - namespace: network
+#      name: netconf
+
+    loop_control:
+      loop_var: collection

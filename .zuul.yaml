@@ -1,0 +1,23 @@
+---
+- job:
+    name: ncc-tox-integration
+    parent: unittests
+    run: tests/playbooks/integration.yaml
+    required-projects:
+      - name: github.com/ansible/ansible
+      - name: github.com/ansible-network/ansible_collections.arista.eos
+      - name: github.com/ansible-network/ansible_collections.cisco.ios
+      - name: github.com/ansible-network/ansible_collections.cisco.iosxr
+      - name: github.com/ansible-network/ansible_collections.juniper.junos
+      - name: github.com/ansible-network/ansible_collections.network.cli
+      - name: github.com/ansible-network/ansible_collections.vyos.vyos
+      - name: github.com/ansible-network/network_content_collector
+    nodeset: fedora-latest-1vcpu
+
+- project:
+    check:
+      jobs:
+        - ncc-tox-integration
+    gate:
+      jobs:
+        - ncc-tox-integration
