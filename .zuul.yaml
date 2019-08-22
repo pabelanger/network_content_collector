@@ -1,0 +1,26 @@
+---
+- job:
+    name: ncc-tox-integration
+    parent: unittests
+    run: tests/playbooks/integration.yaml
+    required-projects:
+      - name: github.com/ansible/ansible
+      - name: github.com/ansible-network/network_content_collector
+    timeout: 3600
+    nodeset: fedora-latest-1vcpu
+
+- job:
+    name: ncc-tox-integration-vyos
+    required-projects:
+      - name: github.com/ansible-network/ansible_collections.vyos.vyos
+    vars:
+      collection_namespace: vyos
+      collection_name: vyos
+
+- project:
+    check:
+      jobs:
+        - ncc-tox-integration-vyos
+    gate:
+      jobs:
+        - ncc-tox-integration-vyos
