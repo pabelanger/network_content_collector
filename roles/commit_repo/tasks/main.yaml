@@ -4,6 +4,6 @@
     chdir: "{{ collection_parent }}"
 
 - name: Commit the repo
-  shell: "git commit -s --allow-empty -m '{{ ansible_commit_message }}'"
+  shell: "git commit -s -m '{{ ansible_commit_message }}'"
   args:
     chdir: "{{ collection_parent }}"
