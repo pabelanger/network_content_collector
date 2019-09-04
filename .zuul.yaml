@@ -125,6 +125,15 @@
       collection_name: iosxr
 
 - job:
+    name: network-content-collector-cisco-nxos
+    parent: network-content-collector-base
+    required-projects:
+      - name: github.com/ansible-network/ansible_collections.cisco.nxos
+    vars:
+      collection_namespace: cisco
+      collection_name: nxos
+
+- job:
     name: network-content-collector-juniper-junos
     parent: network-content-collector-base
     required-projects:
@@ -166,6 +175,7 @@
         - network-content-collector-arista-eos
         - network-content-collector-cisco-ios
         - network-content-collector-cisco-iosxr
+        - network-content-collector-cisco-nxos
         - network-content-collector-juniper-junos
         - network-content-collector-network-cli
         - network-content-collector-network-netconf
@@ -175,6 +185,7 @@
         - network-content-collector-arista-eos
         - network-content-collector-cisco-ios
         - network-content-collector-cisco-iosxr
+        - network-content-collector-cisco-nxos
         - network-content-collector-juniper-junos
         - network-content-collector-network-cli
         - network-content-collector-network-netconf
