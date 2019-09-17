@@ -95,6 +95,13 @@
       proposal_project_src: ~/src/github.com/ansible-network/ansible_collections.vyos.vyos
 
 - job:
+    name: propose-network-content-collector-vyos-vyos-stable29
+    parent: propose-network-content-collector-vyos-vyos
+    required-projects:
+      - name: github.com/ansible/ansible
+        override-checkout: stable-2.9
+
+- job:
     name: network-content-collector-base
     parent: unittests
     pre-run: tests/playbooks/pre.yaml
@@ -210,6 +217,7 @@
         - propose-network-content-collector-network-cli
         - propose-network-content-collector-network-netconf
         - propose-network-content-collector-vyos-vyos
+        - propose-network-content-collector-vyos-vyos-stable29
     post:
       jobs:
         - propose-network-content-collector-arista-eos
@@ -220,3 +228,4 @@
         - propose-network-content-collector-network-cli
         - propose-network-content-collector-network-netconf
         - propose-network-content-collector-vyos-vyos
+        - propose-network-content-collector-vyos-vyos-stable29
